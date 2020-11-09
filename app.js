@@ -4,6 +4,9 @@ const serv = require("http").Server(app);
 const io = require("socket.io")(serv);
 const gameActions = require("./controllers/actions");
 
+const cors = require("cors");
+app.use(cors());
+
 const SOCKET_LIST = [];
 let rooms = [];
 
