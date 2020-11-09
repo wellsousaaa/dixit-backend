@@ -104,7 +104,7 @@ io.on("connection", (socket) => {
     });
 });
 
-serv.listen(3030, () => {
+serv.listen(3000, () => {
   console.log("Server on", serv);
 });
 
