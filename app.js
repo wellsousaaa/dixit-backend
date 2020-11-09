@@ -4,6 +4,8 @@ const serv = require("http").Server(app);
 const io = require("socket.io")(serv);
 const gameActions = require("./controllers/actions");
 
+io.set('origins', 'https://dixitfrontend.herokuapp.com/');
+
 const cors = require("cors");
 app.use(cors());
 
