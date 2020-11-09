@@ -104,7 +104,9 @@ io.on("connection", (socket) => {
     });
 });
 
-serv.listen(2000);
+serv.listen(3030, () => {
+  console.log("Server on");
+});
 
 function getExistentRoom(code) {
     return rooms.find((room) => room.id === code);
