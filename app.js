@@ -104,8 +104,8 @@ io.on("connection", (socket) => {
     });
 });
 
-serv.listen(3000, () => {
-  console.log("Server on", serv);
+serv.listen(.listen(process.env.PORT || 5000), () => {
+  console.log("Server on");
 });
 
 function getExistentRoom(code) {
