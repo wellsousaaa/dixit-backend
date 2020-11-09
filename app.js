@@ -1,5 +1,13 @@
 const express = require("express");
 const app = express();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://dixitfrontend.herokuapp.com");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  next();
+});
+
 const serv = require("http").Server(app);
 const io = require("socket.io")(serv);
 const gameActions = require("./controllers/actions");
