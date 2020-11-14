@@ -14,6 +14,9 @@ const gameActions = require("./controllers/actions");
 
 io.origins(["*:*"]);
 
+let i = 0;
+let l = 0;
+
 const cors = require("cors");
 app.use(cors());
 
@@ -25,6 +28,7 @@ io.on("connection", (socket) => {
     SOCKET_LIST[socket.id] = socket;
 
     socket.on("connect-room", (data) => {
+        console.log("Entrou  ", i++);
         /// pega informações do usuário e armazena no socket
         const { username, code } = data;
         socket.room = code;
@@ -70,6 +74,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => {
+        console.log("Saiu  ", l++);
         /// Tira o socket da lista e identifica a sala que o socket estava
         delete SOCKET_LIST[socket.id];
         const existentRoom = getExistentRoom(socket.room);
