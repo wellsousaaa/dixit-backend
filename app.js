@@ -25,7 +25,6 @@ io.on("connection", (socket) => {
     SOCKET_LIST[socket.id] = socket;
 
     socket.on("connect-room", (data) => {
-      try {
         /// pega informações do usuário e armazena no socket
         const { username, code } = data;
         socket.room = code;
@@ -65,18 +64,12 @@ io.on("connection", (socket) => {
             actualSite.sockets.forEach((s) => {
                 s.emit("update-players", usernames);
             });
-          
-            gameActions(socket, existentRoom);
         }
-      } catch(err){
-        socket.emit("force-disconnect");
-      }
-        
- 
+
+        gameActions(socket, existentRoom);
     });
 
     socket.on("disconnect", () => {
-      try{
         /// Tira o socket da lista e identifica a sala que o socket estava
         delete SOCKET_LIST[socket.id];
         const existentRoom = getExistentRoom(socket.room);
@@ -108,7 +101,6 @@ io.on("connection", (socket) => {
                 existentRoom.sockets[0].emit("auth-mod", true);
             }
         }
-      } catch(err){}
     });
 });
 
